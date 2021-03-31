@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+    <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
+    <meta property="og:site_name" content="" /> <!-- website name -->
+    <meta property="og:site" content="" /> <!-- website link -->
+    <meta property="og:title" content=""/> <!-- title shown in the actual shared post -->
+    <meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
+    <meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
+    <meta property="og:url" content="" /> <!-- where do you want your post to link to -->
+    <meta property="og:type" content="article" />
+
+    <!-- Website Title -->
+    <title>test</title>
+
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/fontawesome-all.css" rel="stylesheet">
+    <link href="/css/swiper.css" rel="stylesheet">
+    <link href="/css/magnific-popup.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+
+    <!-- Favicon  -->
+    <!--<link rel="icon" href="images/favicon.png">-->
+</head>
+<body data-spy="scroll" data-target=".fixed-top" >
+
+<!-- Preloader -->
+<div class="spinner-wrapper">
+    <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+</div>
+<!-- end of preloader -->
+
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top">
+    <!-- Text Logo - Use this if you don't have a graphic logo -->
+    <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Aria</a> -->
+
+    <!-- Image Logo -->
+    <!--<a class="navbar-brand logo-image" href="index.html"><img src="images/logo.svg" alt="alternative"></a>-->
+
+    <!--Mobile Menu Toggle Button-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-awesome fas fa-bars"></span>
+        <span class="navbar-toggler-awesome fas fa-times"></span>
+    </button>
+    <!--end of mobile menu toggle button-->
+
+    <div class="collapse navbar-collapse"  >
+        <ul class="navbar-nav" >
+            <li class="nav-item">
+                <a class="nav-link page-scroll" th:href="@{/user/profile}">My Profile <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link page-scroll" th:href="@{/user/credits}" >Credit Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link page-scroll" th:href="@{/user/inbox}">Inbox</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link page-scroll" th:href="@{/user/support}">Support</a>
+            </li>
+
+
+
+        </ul>
+        <ul class="navbar-nav ml-auto" >
+            <li class="nav-item">
+                <div class="nav-link page-scroll" style="padding-top: 8px">Hi <span th:text="${session.name}"></span></div>
+            </li>
+            <li class="nav-item">
+                <!--<a class="nav-link page-scroll" href="#projects">PROJECTS</a>-->
+                <a type="button" class="btn btn-default btn-sm nav-link page-scroll" th:href="@{/logout}">
+                    Log Out
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</nav> <!-- end of navbar -->
+<!-- end of navbar -->
+
+
+<!-- Header -->
+<header  class="header"  >
+
+    <div class="header-content" style="padding-top: 100px">
+        <div class="container" >
+            <div class="row" >
+                <div class="col-sm-5"></div>
+                <div class="col-sm-2" style="margin-bottom: 25px"><h2 style="color: black">Credit Information Profile</h2></div>
+                <div class="col-sm-5"></div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-7" style="">
+                    <div class="card text-white bg-secondary mb-3" style="width: 600px">
+                        <div class="card-header" style="text: black">Add New Card</div>
+                        <div class="card-body">
+                            <form th:object="${credit}" th:action="@{/user/credits}" method="post">
+                               <div class="row" style="margin-bottom: 10px">
+                               <input class="form-input" type="hidden" value="0" th:field="*{id}">
+                                   <div class="col-sm-4" style="text-align: left">
+                                       Credit Card Type
+                                   </div>
+                                   <div class="col-sm-3" style="text-align: left">
+                                       <div class="form-check form-check-inline ">
+
+                                           <input class="form-check-input" type="radio" name="inlineRadioOptions" id="master" value="Master Card" th:field="*{cardType}">
+                                           <label class="form-check-label" for="master" style="font-size: 14px">Master Card</label>
+                                       </div>
+                                   </div>
+                                   <div class="col-sm-1" style="text-align: left;padding-left: 0px">
+                                       <div class="form-check form-check-inline">
+                                       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="visa" value="VISA" th:field="*{cardType}">
+                                       <label class="form-check-label" for="visa" style="font-size: 14px;">VISA</label>
+                                   </div>
+                                   </div>
+                                   <div class="col-sm-4" style="text-align: left">
+                                       <div class="form-check form-check-inline" >
+                                       <input class="form-check-input" type="radio" name="inlineRadioOptions" id="americanExpress" value="American Express" style="margin-left: 15px" th:field="*{cardType}">
+                                       <label class="form-check-label" for="americanExpress" style="font-size: 14px">American Express</label>
+                                   </div></div>
+
+
+
+
+
+
+                               </div>
+                                <div class="form-group col-md-6">
+                                    <div class="row">
+                                        <label for="Expired">Expired date </label>
+                                        <input class="form-control" type="date" id="Expired" name="Expired" th:field="*{expirationDate}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cardHolderName">Card Holder Name</label>
+                                    <input type="text" class="form-control" id="cardHolderName" placeholder="name" th:field="*{cardHolderName}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cardNumber">Card Number</label>
+                                    <input type="number" class="form-control" id="cardNumber" placeholder="card number" th:field="*{cardNumber}">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="form-check" style="text-align: left">
+                                        <input class="form-check-input" type="checkbox" id="billing" th:field="*{isDefault}">
+                                        <label class="form-check-label" for="billing">
+                                            Save As Default or preferred
+                                        </label>
+                                    </div>
+
+                                </div>
+                                <button type="submit" class="btn btn-primary">Add/Update</button>
+                            </form>
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <!--</div>-->
+
+
+                <div class="col-lg-5">
+
+                    <div class="row" >
+
+                        <div class="card text-white bg-secondary mb-3" style="width: 100%;height: 480px">
+                            <div class="card-header">List Of Existing Profile</div>
+                            <div class="card-body overflow-auto" style="text-align: left">
+                                <div class="card text-white bg-secondary mb-3" style="width: 450px" th:each="credit: ${credits}">
+
+                                    <div class="card-body" style="text-align: left">
+                                        <div class="row" >
+                                            <div class="col-sm-4">Card Type</div>
+                                            <div class="col-sm-8" th:text="${credit.cardType}"></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">Expiry</div>
+                                            <div class="col-sm-8" th:text="${credit.expirationDate}"></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">Card Holder</div>
+                                            <div class="col-sm-8" th:text="${credit.cardHolderName}"></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">Card Number</div>
+                                            <div class="col-sm-8" th:text="${credit.cardNumber}"></div>
+                                        </div>
+                                        <div class="row" th:if="${credit.isDefault}">
+                                            <div class="col-sm-4">Default</div>
+                                            <div class="col-sm-8">Yes</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div> <!-- end of container -->
+    </div> <!-- end of header-content -->
+</header> <!-- end of header -->
+<!-- end of header -->
+
+
+<!-- Intro -->
+
+
+<!-- Scripts -->
+
+<script src="/js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+<script src="/js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
+<script src="/js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
+<script src="/js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+<script src="/js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
+<script src="/js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
+<script src="/js/morphext.min.js"></script> <!-- Morphtext rotating text in the header -->
+<script src="/js/isotope.pkgd.min.js"></script> <!-- Isotope for filter -->
+<script src="/js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
+<script src="/js/scripts.js"></script> <!-- Custom scripts -->
+
+</body>
+</html>
